@@ -1,0 +1,57 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _Groundcover_Rock_Crushed_2_inch_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.509804 0.498039 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/_Groundcover_Rock_Crushed_2_inch_4.jpg
+
+newmtl Grass_Dark_Green
+Ka 0.000000 0.000000 0.000000
+Kd 0.415686 0.615686 0.215686
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/Grass_Dark_Green.jpg
+
+newmtl Groundcover_Rock_Crushed_2_inch
+Ka 0.000000 0.000000 0.000000
+Kd 0.509804 0.498039 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/Groundcover_Rock_Crushed_2_inch.jpg
+
+newmtl _Groundcover_Gravel_1_inch_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.596078 0.521569 0.431373
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/_Groundcover_Gravel_1_inch_2.jpg
+
+newmtl Resin_Turquoise
+Ka 0.000000 0.000000 0.000000
+Kd 0.458824 0.854902 0.874510
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/Resin_Turquoise.jpg
+
+newmtl _Groundcover_Rock_Crushed_2_inch_1
+Ka 0.000000 0.000000 0.000000
+Kd 0.509804 0.498039 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/_Groundcover_Rock_Crushed_2_inch_1.jpg
+
+newmtl _Groundcover_Rock_Crushed_2_inch_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.509804 0.498039 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/_Groundcover_Rock_Crushed_2_inch_2.jpg
+
+newmtl _Groundcover_Rock_Crushed_2_inch_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.509804 0.498039 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/_Groundcover_Rock_Crushed_2_inch_5.jpg
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+

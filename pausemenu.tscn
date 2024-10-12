@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmsdnqj1dxxtc"]
+
+[ext_resource type="Script" path="res://pausemenu.gd" id="1_tkq36"]
+[ext_resource type="Script" path="res://sensitivity.gd" id="2_32y6t"]
+[ext_resource type="Script" path="res://fov.gd" id="3_vlila"]
+[ext_resource type="Script" path="res://brightness_2.gd" id="4_mvfea"]
+
+[node name="pausemenu" type="Control"]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkq36")
+
+[node name="Paused" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 432.0
+offset_top = 72.0
+offset_right = 720.0
+offset_bottom = 182.0
+theme_override_font_sizes/font_size = 80
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.270588)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 176.0
+offset_right = 714.0
+offset_bottom = 341.0
+alignment = 1
+
+[node name="Sensitivity" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Mouse Sensitivity"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+max_value = 3.0
+step = 0.1
+value = 2.0
+
+[node name="Sensitivity2" type="Label" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "NaN"
+horizontal_alignment = 1
+script = ExtResource("2_32y6t")
+
+[node name="FOV" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "FOV
+"
+horizontal_alignment = 1
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+min_value = 11.0
+max_value = 169.0
+value = 100.0
+
+[node name="FOV2" type="Label" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "NaN"
+horizontal_alignment = 1
+script = ExtResource("3_vlila")
+
+[node name="Brightness" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Brightness
+"
+horizontal_alignment = 1
+
+[node name="HSlider3" type="HSlider" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+max_value = 10.0
+step = 0.1
+value = 0.2
+
+[node name="Brightness2" type="Label" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "NaN"
+horizontal_alignment = 1
+script = ExtResource("4_mvfea")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "return to Main Menu"
+autowrap_mode = 2
