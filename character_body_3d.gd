@@ -94,6 +94,8 @@ func _input(event):
 func _process(delta):
 	if is_on_floor():
 		jump_decrease_counter += delta
+	else:
+		jump_decrease_counter += delta/2
 	
 	if jump_decrease_counter > max_non_jump_time:
 		extra_jump_height = 0

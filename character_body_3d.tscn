@@ -45,30 +45,30 @@ fov = 14.0625
 script = ExtResource("2_wwv6f")
 
 [node name="Indicator_1" type="Sprite2D" parent="Head/Camera3D"]
-position = Vector2(572, 320)
-scale = Vector2(0.03, 0.03)
+position = Vector2(583, 322.25)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("4_lgu06")
 hframes = 2
 script = ExtResource("5_u2v63")
 
 [node name="Indicator_2" type="Sprite2D" parent="Head/Camera3D"]
-position = Vector2(580, 320)
-scale = Vector2(0.03, 0.03)
+position = Vector2(583, 317.75)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("4_lgu06")
 hframes = 2
 script = ExtResource("6_iff8h")
 
 [node name="GpIndicator" type="Sprite2D" parent="Head/Camera3D"]
 z_index = -1
-position = Vector2(576, 323.5)
-scale = Vector2(0.08, 0.08)
+position = Vector2(576, 325)
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("10_8n6vy")
 hframes = 2
 script = ExtResource("8_y5oxq")
 
 [node name="Crosshair" type="Sprite2D" parent="Head/Camera3D"]
 position = Vector2(576, 320)
-scale = Vector2(0.04, 0.04)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_wslwn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
