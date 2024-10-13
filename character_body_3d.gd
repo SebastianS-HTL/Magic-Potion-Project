@@ -38,7 +38,7 @@ var original_camera_y = 0.0  # Store original camera position
 #Ground Pounds
 var height_before_GP = 0.0
 var GP_impact_min_height = 6
-var extra_jump_height = 1
+var extra_jump_height = 0
 var extra_jump_height_increase = 3
 
 # Reference to the PauseMenu node
@@ -53,6 +53,9 @@ var jump
 var gp_start
 var gp_impact
 var dash
+
+var jump_decrease_counter = 0
+var max_non_jump_time = 1
 
 func _ready():
 	slide = $slide
@@ -89,10 +92,13 @@ func _input(event):
 		toggle_pause()
 
 func _process(delta):
-	if extra_jump_height > 0.3 and is_on_floor():
-		extra_jump_height -= 0.01
-	elif extra_jump_height < 0.3:
+	if is_on_floor():
+		jump_decrease_counter += delta
+	
+	if jump_decrease_counter > max_non_jump_time:
 		extra_jump_height = 0
+	
+	print(extra_jump_height)
 	
 	if is_paused:
 		return  # Stop movement and input processing when paused
@@ -109,6 +115,7 @@ func _process(delta):
 	
 	# Double jump implementation
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or jump_count < max_jumps):
+		jump_decrease_counter = 0
 		jump.play()
 		velocity.y = jump_force + extra_jump_height
 		jump_count += 1  # Increase the jump count whenever a jump is performed
@@ -234,7 +241,7 @@ func can_ground_pound_impact() -> bool:
 
 #when a gp is high anof (bro dont judge me)
 func impact():
-	extra_jump_height = extra_jump_height_increase
+	extra_jump_height += extra_jump_height_increase
 	#print("n-word goes boom")
 	
 	var gp_impact_area = get_child(3)  # assume the Area3D node is a child of the player
