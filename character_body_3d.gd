@@ -53,6 +53,7 @@ var jump
 var gp_start
 var gp_impact
 var dash
+var land
 
 var jump_decrease_counter = 0
 var max_non_jump_time = 1
@@ -63,6 +64,7 @@ func _ready():
 	gp_start = $gp_start
 	gp_impact = $gp_impact
 	dash = $dash
+	land = $land
 	
 	head = get_child(2)
 	camera = get_child(2).get_child(0)

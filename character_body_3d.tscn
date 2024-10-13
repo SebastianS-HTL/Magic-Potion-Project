@@ -113,3 +113,9 @@ stream = ExtResource("5_8x44b")
 attenuation_model = 3
 volume_db = -10.0
 pitch_scale = 0.95
+
+[node name="land" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_q51nf")
+attenuation_model = 3
+volume_db = 30.0
+pitch_scale = 1.3
