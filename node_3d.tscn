@@ -63,6 +63,8 @@ script = ExtResource("4_adyyc")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -60, 0)
 
 [node name="deathborders" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="deathborders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.302, -114.972, 559.282)
