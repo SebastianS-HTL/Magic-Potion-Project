@@ -93,7 +93,17 @@ func _input(event):
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()
 
+var land_toggle = false
+
 func _process(delta):
+	if is_on_floor() and land_toggle:
+		if not is_ground_pounding:
+			print("played sound")
+			land.play()
+		land_toggle = false
+	elif not is_on_floor():
+		land_toggle = true
+	
 	if is_on_floor():
 		jump_decrease_counter += delta
 	else:
