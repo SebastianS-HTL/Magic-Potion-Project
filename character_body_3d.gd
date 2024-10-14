@@ -98,7 +98,6 @@ var land_toggle = false
 func _process(delta):
 	if is_on_floor() and land_toggle:
 		if not is_ground_pounding:
-			print("played sound")
 			land.play()
 		land_toggle = false
 	elif not is_on_floor():
