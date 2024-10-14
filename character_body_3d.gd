@@ -98,21 +98,10 @@ var land_toggle = false
 func _process(delta):
 	if is_on_floor() and land_toggle:
 		if not is_ground_pounding:
-			print("played sound")
 			land.play()
 		land_toggle = false
 	elif not is_on_floor():
 		land_toggle = true
-	
-	if is_on_floor():
-		jump_decrease_counter += delta
-	else:
-		jump_decrease_counter += delta/2
-	
-	if jump_decrease_counter > max_non_jump_time:
-		extra_jump_height = 0
-	
-	print(extra_jump_height)
 	
 	if is_paused:
 		return  # Stop movement and input processing when paused
@@ -224,6 +213,16 @@ func _process(delta):
 		
 		if speedMultiplier < 1:
 			speedMultiplier = 1
+	if not(velocity.x == 0 and velocity.z == 0):
+		if is_on_floor():
+			jump_decrease_counter += delta
+		else:
+			jump_decrease_counter += delta/2
+		
+		if jump_decrease_counter > max_non_jump_time:
+			extra_jump_height = 0
+	
+	print(extra_jump_height)
 
 # Function to check if the distance to the ground is greater than the impact limit
 func can_ground_pound_impact() -> bool:
