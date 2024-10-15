@@ -142,9 +142,10 @@ func _process(delta):
 
 	# Dash mechanic with limited dashes and reloading
 	if Input.is_action_just_pressed("shift") and not is_dashing and not is_sliding and dash_count > 0:
-		start_dash(direction)
-		dash_count -= 1  # Decrement available dashes
-
+		if velocity.x != 0 and velocity.z != 0:
+			start_dash(direction)
+			dash_count -= 1  # Decrement available dashes
+		
 	# Handle dash timer and dash reload
 	if is_dashing:
 		dash_timer -= delta
@@ -167,7 +168,7 @@ func _process(delta):
 		stop_slide()
 	elif not Input.is_action_pressed("ctrl") and slide_disabled:
 		slide_disabled = false  # Re-enable sliding when Ctrl is released
-
+	
 	# Apply movement speed based on state
 	if is_sliding:
 		velocity.x = slide_direction.x * slide_speed
@@ -221,8 +222,6 @@ func _process(delta):
 		
 		if jump_decrease_counter > max_non_jump_time:
 			extra_jump_height = 0
-	
-	print(extra_jump_height)
 
 # Function to check if the distance to the ground is greater than the impact limit
 func can_ground_pound_impact() -> bool:
@@ -285,6 +284,7 @@ func stop_slide():
 func start_dash(direction: Vector3):
 	dash.play()
 	is_dashing = true
+	
 	dash_direction = direction
 	dash_timer = dash_duration
 
