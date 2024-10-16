@@ -253,6 +253,7 @@ func can_ground_pound_impact() -> bool:
 
 #when a gp is high anof (bro dont judge me)
 func impact():
+	camera.do_screen_shake(0.1,0.7)
 	extra_jump_height += extra_jump_height_increase
 	#print("n-word goes boom")
 	
