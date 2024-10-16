@@ -179,7 +179,7 @@ func _process(delta):
 	else:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-
+	
 	# Apply ground pound force
 	if is_ground_pounding:
 		velocity.y = ground_pound_force
@@ -255,7 +255,6 @@ func can_ground_pound_impact() -> bool:
 func impact():
 	camera.do_screen_shake(0.1,0.7)
 	extra_jump_height += extra_jump_height_increase
-	#print("n-word goes boom")
 	
 	var gp_impact_area = get_child(3)  # assume the Area3D node is a child of the player
 	
@@ -270,9 +269,6 @@ func start_slide(direction: Vector3):
 	slide.play()
 	is_sliding = true
 	slide_direction = direction
-
-	# Lower the camera position
-	camera.v_offset = -1
 
 func stop_slide():
 	is_sliding = false

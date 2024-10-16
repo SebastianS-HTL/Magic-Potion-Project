@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 	#screenshake
 	if shaking:
 		if timer > 0:
-			print(timer)
 			timer -= delta
 			
 			var rng = RandomNumberGenerator.new()
@@ -37,6 +36,20 @@ func _process(delta: float) -> void:
 			set_v_offset(0)
 	else:
 		shaking = false
+	
+	#sliding
+	if get_parent().get_parent().is_sliding:
+		if get_v_offset() >= -1.9:
+			set_v_offset(get_v_offset()-0.25)
+		else:
+			set_v_offset(-2)
+	else:
+		if get_v_offset() <= -0.1:
+			set_v_offset(get_v_offset()+0.25)
+		else:
+			set_v_offset(0)
+	
+	print(get_v_offset())
 
 func do_screen_shake(time,intensitivity):
 	shaking = true
