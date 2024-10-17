@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	
 	#sliding
 	if get_parent().get_parent().is_sliding:
-		set_v_offset(-2)
+		set_v_offset(-1.5)
 	else:
 		if not shaking:
 			set_v_offset(0)
