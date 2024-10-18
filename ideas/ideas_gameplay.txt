@@ -1,3 +1,17 @@
+Story: couple lives in a mountain village in a cabin near a lake (maybe they are tourists?) the local cult (who else) tryies to kidnap them. They get the girl, but the guy fights with one of the cultists. The cultists tries to use a strength potion on himself, but our dude (maybe lets call him just dude, Postal vibes) takes it and uses it on himself. he knocks out the guy fighting him, however he passes out. When he wakes up, he has the powers of movement and tracks down the cult.
+
+Potential Endings or Plotpoints:
+-Demo Endings: Just a cut, and a small comic of 2 cultists looking at passed out mumbling dude and saying something like. Wtf is he doing? He´s probably tripping right now. (prob totally cringe, but gives a shit)
+-you fight your own wife: more time has passed than you thought. The cult has either mutated or completely indoctrinated your wife (i dont even know if shese going to be a gf or wife, thats something later me will have to think about)
+-decide: maybe you could decide to either spare or kill the cult leader or even your wife/gf causing different endings
+-Real Endings:
+	-maybe make the demo ending idea a secret ending
+	-omg this is so stereotypical: just get your gf/wife back (will prob be like a rebirth and therefore a harder challenge) and leave
+		-maybe include a way to skip the bossfight, and having to find a heal or something to remind her that you are together (therefore converting her)
+	-i wont do this: dont attack your wife/gf, therefore sacrificing yourself (kinda have to implement that fight now)
+	-all must die: kill your wife/gf and keep going on (will prob be the most common ending)
+
+
 gp-jumps get very high at the moment. Maybe make levels be based on verticality, so this isn't a problem with the player just flying around
 
 add first weapon: fists you have a 
