@@ -1,0 +1,1 @@
+gp-jumps get very high at the moment. Maybe make levels be based on verticality, so this isn't a problem with the player just flying around
