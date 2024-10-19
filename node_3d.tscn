@@ -61,6 +61,7 @@ script = ExtResource("4_adyyc")
 
 [node name="runner" parent="." instance=ExtResource("5_pc7tg")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -60, 0)
+visible = false
 
 [node name="deathborders" type="Area3D" parent="."]
 collision_layer = 8

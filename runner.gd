@@ -11,9 +11,16 @@ var inconpacitated = false #mf i dont even know if this exists
 var uppy = 0
 var gravity = 9.81
 var was_not_on_ground = false
-@onready var player = get_parent()
+var player
+
+func _ready() -> void:
+	set_second_collision_mask(true)
 
 func _physics_process(delta):
+	player = get_parent().get_child(0)
+	if player.is_ground_pounding and player.can_ground_pound_impact():
+		set_second_collision_mask(false)
+	
 	if not inconpacitated:
 		update_target_location(get_parent().get_child(0).position)
 		
@@ -34,26 +41,23 @@ func _physics_process(delta):
 		velocity = Vector3(0,uppy - gravity,0)
 		move_and_slide()
 		
-		if not is_on_floor():
-			was_not_on_ground = true
-			print("left")
-		else:
-			var player_position = player.global_transform.origin
-			var away_vector = Vector3(1, 0, 0) # Example direction vector
-			away_vector = away_vector.normalized() * 10
-			var target_position = player_position + away_vector
-			velocity = away_vector
-			move_and_slide()
+		uppy /= 1.05
+		if uppy < 1:
+			uppy = 0
 		
-		if was_not_on_ground:
-			uppy /= 1.1
-			if uppy < 1:
-				uppy = 0
-		
-		if is_on_floor() and was_not_on_ground:
+		if is_on_floor():
+			set_second_collision_mask(true)
 			inconpacitated = false
 
 func got_impacted():
-	print("ee")
 	inconpacitated = true
-	uppy = 100
+	print("ee")
+	uppy = 70
+
+func set_second_collision_mask(enabled: bool):
+	var mask = collision_mask
+	var bit_position = 1	# The second bit is at position 1 (0-indexed)
+	if enabled:
+		collision_mask = mask | (1 << bit_position)
+	else:
+		collision_mask = mask & ~(1 << bit_position)

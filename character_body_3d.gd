@@ -62,8 +62,9 @@ var dash
 var land
 
 func _ready():
-	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	Engine.max_fps = 10000
+	if(not VSync):
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		Engine.max_fps = 300
 	
 	slide = $slide
 	jump = $jump
@@ -228,10 +229,10 @@ func _process(delta):
 	move_and_slide()
 	
 	if is_on_floor() and speedMultiplier > 1:
-		speedMultiplier -= 0.02
+		speedMultiplier -= 1*delta
 		
 		if velocity == Vector3.ZERO:
-			speedMultiplier -= 0.02
+			speedMultiplier -= 1*delta
 		
 		if speedMultiplier < 1:
 			speedMultiplier = 1
