@@ -1,17 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdepth7kc7b7a"]
+[gd_scene load_steps=4 format=3 uid="uid://cdepth7kc7b7a"]
 
 [ext_resource type="Script" path="res://runner.gd" id="1_gwslm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3gyho"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pmpbk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8mby"]
-metallic = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_lgvel"]
-material = SubResource("StandardMaterial3D_r8mby")
-size = Vector3(0.1, 0.2, 0.3)
 
 [node name="runner" type="CharacterBody3D"]
 collision_layer = 4
@@ -30,7 +23,3 @@ shape = SubResource("CapsuleShape3D_pmpbk")
 avoidance_enabled = true
 radius = 2.0
 max_speed = 10000.0
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.50109, -0.501829)
-mesh = SubResource("BoxMesh_lgvel")

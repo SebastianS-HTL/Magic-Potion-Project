@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dr7mtqhl4ihbu"]
+[gd_scene load_steps=16 format=3 uid="uid://dr7mtqhl4ihbu"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_ij73u"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="2_wwv6f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4seyjojlkegk" path="res://textures/crosshair.png" id="6_wslwn"]
 [ext_resource type="Script" path="res://gp_indicator.gd" id="8_y5oxq"]
 [ext_resource type="Texture2D" uid="uid://cvpih6e3mdq1i" path="res://textures/gp_indicator.png" id="10_8n6vy"]
+[ext_resource type="Script" path="res://debug_menu.gd" id="10_v47qv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_khnke"]
 radius = 1.32699
@@ -100,12 +101,6 @@ position = Vector2(576, 320)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_wslwn")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.334861, 0)
-visible = false
-light_energy = 10.0
-omni_range = 7.10615
-
 [node name="GP-impact" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 4
@@ -113,6 +108,41 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GP-impact"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409214, 0)
 shape = SubResource("CylinderShape3D_havn3")
+
+[node name="Debug Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 301.0
+offset_bottom = 648.0
+script = ExtResource("10_v47qv")
+
+[node name="Speed" type="Label" parent="Debug Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SOMETHING WRONG HERE"
+
+[node name="SpeedMultiplier" type="Label" parent="Debug Menu"]
+layout_mode = 0
+offset_top = 19.0
+offset_right = 206.0
+offset_bottom = 42.0
+text = "SOMETHING WRONG HERE"
+
+[node name="ExtraJumpHeight" type="Label" parent="Debug Menu"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 206.0
+offset_bottom = 61.0
+text = "SOMETHING WRONG HERE"
+
+[node name="NonJumpTimer" type="Label" parent="Debug Menu"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 206.0
+offset_bottom = 80.0
+text = "SOMETHING WRONG HERE"
 
 [node name="slide" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_q51nf")

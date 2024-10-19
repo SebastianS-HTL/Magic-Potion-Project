@@ -4,6 +4,8 @@ var speed = 15.0
 
 var mouse_sensitivity
 
+@export var show_debug_info: bool
+
 @export var gravity = 9.8
 @export var jump_force = 10
 @export var sensitivity_multiplier = 1.0  # Sensitivity multiplier variable
@@ -39,7 +41,10 @@ var original_camera_y = 0.0  # Store original camera position
 var height_before_GP = 0.0
 var GP_impact_min_height = 6
 var extra_jump_height = 0
-var extra_jump_height_increase = 3
+var extra_jump_height_increase = 0.2
+var max_extra_jump_height = 20 #this is EXPERIMENTAL, and may be reworked, its just that i dont have the power right now for a fix so this is a TEMPORARY solution
+var max_non_jump_time = 0.2 #how long you can stay on the ground without jumping before your extra-jump-height is reset
+var non_jump_time_counter = -1
 
 # Reference to the PauseMenu node
 var pause_menu = null
@@ -54,9 +59,6 @@ var gp_start
 var gp_impact
 var dash
 var land
-
-var jump_decrease_counter = 0
-var max_non_jump_time = 1
 
 func _ready():
 	slide = $slide
@@ -96,13 +98,21 @@ func _input(event):
 var land_toggle = false
 
 func _process(delta):
-	print("www")
-	print(extra_jump_height)
-	print("www")
+	if extra_jump_height > max_extra_jump_height:
+		extra_jump_height = max_extra_jump_height
 	
+	#if is_sliding:
+		#extra_jump_height = 0
+	
+	#show/hide debug
+	get_child(4).visible = show_debug_info
+	
+	#also includes a check that starts the non_jump_time_counter when just flying around but hitting the floor without a groundpound
 	if is_on_floor() and land_toggle:
 		if not is_ground_pounding:
 			land.play()
+			if non_jump_time_counter != 0:
+				non_jump_time_counter = 0
 		land_toggle = false
 	elif not is_on_floor():
 		land_toggle = true
@@ -122,28 +132,34 @@ func _process(delta):
 	
 	# Double jump implementation
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or jump_count < max_jumps):
-		jump_decrease_counter = 0
 		jump.play()
 		velocity.y = jump_force + extra_jump_height
 		jump_count += 1  # Increase the jump count whenever a jump is performed
-
+	
 		# Stop sliding when jumping
 		if is_sliding:
 			stop_slide()
 			speedMultiplier += 0.4 #increment speed if slide canceling
 			slide_disabled = true  # Disable sliding until Ctrl is released and pressed again
-
+	
 		# Stop ground pound when jumping
 		if is_ground_pounding:
 			stop_ground_pound()
-
+	
+	#reduce the extra jump height when not jumping in time after a gp
+	if(non_jump_time_counter > -1) and is_on_floor():
+		non_jump_time_counter += delta
+		
+		if non_jump_time_counter > max_non_jump_time:
+			extra_jump_height = 0
+	
 	# Reset jump count when on the floor
 	if is_on_floor():
 		jump_count = 0
 		if is_ground_pounding and height_before_GP - position.y > GP_impact_min_height:
 			impact()
 		is_ground_pounding = false  # Reset ground pound when on the floor
-
+	
 	# Dash mechanic with limited dashes and reloading
 	if Input.is_action_just_pressed("shift") and not is_dashing and not is_sliding and dash_count > 0:
 		if velocity.x != 0 and velocity.z != 0:
@@ -160,7 +176,7 @@ func _process(delta):
 		if dash_reload_timer >= dash_reload_time:
 			dash_reload_timer = 0
 			dash_count += 1  # Increment available dashes
-
+	
 	# Ground pound mechanic (only when in air)
 	if not is_on_floor() and Input.is_action_just_pressed("ctrl") and not is_ground_pounding:
 		start_ground_pound()
@@ -187,7 +203,7 @@ func _process(delta):
 	# Apply ground pound force
 	if is_ground_pounding:
 		velocity.y = ground_pound_force
-
+	
 	# Camera sideways rotation while moving
 	var sidelean = 0.06
 	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
@@ -218,20 +234,11 @@ func _process(delta):
 		
 		if speedMultiplier < 1:
 			speedMultiplier = 1
-	if not(velocity.x == 0 and velocity.z == 0):
-		if is_on_floor():
-			jump_decrease_counter += delta
-		else:
-			jump_decrease_counter += delta/2
-		
-		if jump_decrease_counter > max_non_jump_time:
-			print("RESET")
-			extra_jump_height = 0
 
 # Function to check if the distance to the ground is greater than the impact limit
 func can_ground_pound_impact() -> bool:
 	var ray_length = 100000
-
+	
 	# Create a temporary RayCast3D node
 	var raycast = RayCast3D.new()
 	raycast.enabled = true
@@ -247,7 +254,7 @@ func can_ground_pound_impact() -> bool:
 	var can_impact = false
 	if raycast.is_colliding():
 		var distance_to_ground = raycast.get_collision_point().distance_to(global_transform.origin)
-		can_impact = distance_to_ground >= GP_impact_min_height
+		can_impact = distance_to_ground >= GP_impact_min_height +1.1
 
 	# Remove the temporary raycast node
 	remove_child(raycast)
@@ -258,16 +265,10 @@ func can_ground_pound_impact() -> bool:
 
 #when a gp is high anof (bro dont judge me)
 func impact():
-	print("height_before_GP")
-	print(height_before_GP)
-	print(position.y)
-	print(abs(height_before_GP-position.y))
-	
+	non_jump_time_counter = 0
 	camera.do_screen_shake(0.1,0.7)
-	extra_jump_height += abs(height_before_GP-position.y)*0.2
 	
-	print(extra_jump_height)
-	print("height_before_GP")
+	extra_jump_height += abs(height_before_GP-position.y)*extra_jump_height_increase
 	
 	var gp_impact_area = get_child(3)  # assume the Area3D node is a child of the player
 	
