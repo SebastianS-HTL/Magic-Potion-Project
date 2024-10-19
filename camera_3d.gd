@@ -43,8 +43,6 @@ func _process(delta: float) -> void:
 	else:
 		if not shaking:
 			set_v_offset(0)
-	
-	print(get_v_offset())
 
 func do_screen_shake(time,intensitivity):
 	shaking = true

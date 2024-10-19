@@ -6,8 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://bw13vp6lbyjjl" path="res://sounds/gp-impact.wav" id="4_iifgh"]
 [ext_resource type="Texture2D" uid="uid://dwtwxt6e1wmp7" path="res://textures/indicator.png" id="4_lgu06"]
 [ext_resource type="AudioStream" uid="uid://b8d1gdiniyeoh" path="res://sounds/dash.wav" id="5_8x44b"]
-[ext_resource type="Script" path="res://scripts/indicator_1.gd" id="5_u2v63"]
-[ext_resource type="Script" path="res://scripts/indicator_2.gd" id="6_iff8h"]
 [ext_resource type="Texture2D" uid="uid://b4seyjojlkegk" path="res://textures/crosshair.png" id="6_wslwn"]
 [ext_resource type="Script" path="res://gp_indicator.gd" id="8_y5oxq"]
 [ext_resource type="Texture2D" uid="uid://cvpih6e3mdq1i" path="res://textures/gp_indicator.png" id="10_8n6vy"]
@@ -17,6 +15,37 @@ radius = 1.32699
 height = 3.71455
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w0fkh"]
+
+[sub_resource type="GDScript" id="GDScript_mkgou"]
+script/source = "extends Sprite2D
+
+var dash_count
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	dash_count = get_parent().get_parent().get_parent().dash_count
+	
+	if dash_count >= 1:
+		frame = 0
+	else:
+		frame = 1
+"
+
+[sub_resource type="GDScript" id="GDScript_oqnrh"]
+script/source = "extends Sprite2D
+
+var dash_count
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	dash_count = get_parent().get_parent().get_parent().dash_count
+	
+	if dash_count > 1:
+		frame = 0
+	else:
+		frame = 1
+"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_havn3"]
 height = 17.9087
@@ -49,14 +78,14 @@ position = Vector2(583, 322.25)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("4_lgu06")
 hframes = 2
-script = ExtResource("5_u2v63")
+script = SubResource("GDScript_mkgou")
 
 [node name="Indicator_2" type="Sprite2D" parent="Head/Camera3D"]
 position = Vector2(583, 317.75)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("4_lgu06")
 hframes = 2
-script = ExtResource("6_iff8h")
+script = SubResource("GDScript_oqnrh")
 
 [node name="GpIndicator" type="Sprite2D" parent="Head/Camera3D"]
 z_index = -1

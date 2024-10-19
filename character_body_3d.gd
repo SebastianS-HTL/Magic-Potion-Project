@@ -96,6 +96,10 @@ func _input(event):
 var land_toggle = false
 
 func _process(delta):
+	print("www")
+	print(extra_jump_height)
+	print("www")
+	
 	if is_on_floor() and land_toggle:
 		if not is_ground_pounding:
 			land.play()
@@ -221,6 +225,7 @@ func _process(delta):
 			jump_decrease_counter += delta/2
 		
 		if jump_decrease_counter > max_non_jump_time:
+			print("RESET")
 			extra_jump_height = 0
 
 # Function to check if the distance to the ground is greater than the impact limit
@@ -242,7 +247,7 @@ func can_ground_pound_impact() -> bool:
 	var can_impact = false
 	if raycast.is_colliding():
 		var distance_to_ground = raycast.get_collision_point().distance_to(global_transform.origin)
-		can_impact = distance_to_ground >= GP_impact_min_height+1.1
+		can_impact = distance_to_ground >= GP_impact_min_height
 
 	# Remove the temporary raycast node
 	remove_child(raycast)
@@ -259,7 +264,7 @@ func impact():
 	print(abs(height_before_GP-position.y))
 	
 	camera.do_screen_shake(0.1,0.7)
-	extra_jump_height = abs(height_before_GP-position.y)*0.2
+	extra_jump_height += abs(height_before_GP-position.y)*0.2
 	
 	print(extra_jump_height)
 	print("height_before_GP")
