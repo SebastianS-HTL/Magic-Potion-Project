@@ -56,6 +56,7 @@ radius = 8.52439
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01143, 0)
 collision_layer = 2
 script = ExtResource("1_ij73u")
+show_debug_info = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129902, 0)
@@ -70,7 +71,7 @@ mesh = SubResource("CapsuleMesh_w0fkh")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16999, 0.0548577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17, 0)
 fov = 14.0625
 script = ExtResource("2_wwv6f")
 
@@ -117,31 +118,37 @@ offset_right = 301.0
 offset_bottom = 648.0
 script = ExtResource("10_v47qv")
 
-[node name="Speed" type="Label" parent="Debug Menu"]
-layout_mode = 0
-offset_right = 40.0
+[node name="FPS" type="Label" parent="Debug Menu"]
+offset_right = 206.0
 offset_bottom = 23.0
 text = "SOMETHING WRONG HERE"
 
-[node name="SpeedMultiplier" type="Label" parent="Debug Menu"]
+[node name="Speed" type="Label" parent="Debug Menu"]
 layout_mode = 0
 offset_top = 19.0
 offset_right = 206.0
 offset_bottom = 42.0
 text = "SOMETHING WRONG HERE"
 
-[node name="ExtraJumpHeight" type="Label" parent="Debug Menu"]
+[node name="SpeedMultiplier" type="Label" parent="Debug Menu"]
 layout_mode = 0
 offset_top = 38.0
 offset_right = 206.0
 offset_bottom = 61.0
 text = "SOMETHING WRONG HERE"
 
-[node name="NonJumpTimer" type="Label" parent="Debug Menu"]
+[node name="ExtraJumpHeight" type="Label" parent="Debug Menu"]
 layout_mode = 0
 offset_top = 57.0
 offset_right = 206.0
 offset_bottom = 80.0
+text = "SOMETHING WRONG HERE"
+
+[node name="NonJumpTimer" type="Label" parent="Debug Menu"]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 206.0
+offset_bottom = 99.0
 text = "SOMETHING WRONG HERE"
 
 [node name="slide" type="AudioStreamPlayer3D" parent="."]

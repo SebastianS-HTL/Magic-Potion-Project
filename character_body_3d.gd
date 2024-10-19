@@ -5,6 +5,7 @@ var speed = 15.0
 var mouse_sensitivity
 
 @export var show_debug_info: bool
+@export var VSync: bool
 
 @export var gravity = 9.8
 @export var jump_force = 10
@@ -61,6 +62,9 @@ var dash
 var land
 
 func _ready():
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	Engine.max_fps = 10000
+	
 	slide = $slide
 	jump = $jump
 	gp_start = $gp_start
@@ -100,9 +104,6 @@ var land_toggle = false
 func _process(delta):
 	if extra_jump_height > max_extra_jump_height:
 		extra_jump_height = max_extra_jump_height
-	
-	#if is_sliding:
-		#extra_jump_height = 0
 	
 	#show/hide debug
 	get_child(4).visible = show_debug_info
@@ -273,6 +274,7 @@ func impact():
 	var gp_impact_area = get_child(3)  # assume the Area3D node is a child of the player
 	
 	for body in gp_impact_area.get_overlapping_bodies():
+		print(body)
 		if body is CharacterBody3D:
 			body.got_impacted()
 	

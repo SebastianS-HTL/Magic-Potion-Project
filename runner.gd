@@ -10,6 +10,8 @@ func update_target_location(location):
 var inconpacitated = false #mf i dont even know if this exists
 var uppy = 0
 var gravity = 9.81
+var was_not_on_ground = false
+@onready var player = get_parent()
 
 func _physics_process(delta):
 	if not inconpacitated:
@@ -30,16 +32,28 @@ func _physics_process(delta):
 		rotation.z = 0
 	else:
 		velocity = Vector3(0,uppy - gravity,0)
-		
 		move_and_slide()
 		
-		uppy /= 1.1
-		if uppy < 1:
-			uppy = 0
+		if not is_on_floor():
+			was_not_on_ground = true
+			print("left")
+		else:
+			var player_position = player.global_transform.origin
+			var away_vector = Vector3(1, 0, 0) # Example direction vector
+			away_vector = away_vector.normalized() * 10
+			var target_position = player_position + away_vector
+			velocity = away_vector
+			move_and_slide()
 		
-		if is_on_floor():
+		if was_not_on_ground:
+			uppy /= 1.1
+			if uppy < 1:
+				uppy = 0
+		
+		if is_on_floor() and was_not_on_ground:
 			inconpacitated = false
 
 func got_impacted():
+	print("ee")
 	inconpacitated = true
 	uppy = 100

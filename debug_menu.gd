@@ -1,5 +1,6 @@
 extends Control
 
+@onready var FPS = $FPS
 @onready var Speed = $Speed
 @onready var SpeedMultiplier = $SpeedMultiplier
 @onready var ExtraJumpHeight = $ExtraJumpHeight
@@ -7,6 +8,7 @@ extends Control
 @onready var player = get_parent()
 
 func _process(delta: float) -> void:
+	FPS.text = "FPS: " + str(roundf(1/delta))
 	Speed.text = "speed: " + str(player.speed * player.speedMultiplier)
 	SpeedMultiplier.text = "speed_multiplier: " + str(player.speedMultiplier)
 	ExtraJumpHeight.text = "extra_jump_height: " + str(player.extra_jump_height)
