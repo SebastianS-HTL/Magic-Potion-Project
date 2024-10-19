@@ -253,8 +253,16 @@ func can_ground_pound_impact() -> bool:
 
 #when a gp is high anof (bro dont judge me)
 func impact():
+	print("height_before_GP")
+	print(height_before_GP)
+	print(position.y)
+	print(abs(height_before_GP-position.y))
+	
 	camera.do_screen_shake(0.1,0.7)
-	extra_jump_height += extra_jump_height_increase
+	extra_jump_height = abs(height_before_GP-position.y)*0.2
+	
+	print(extra_jump_height)
+	print("height_before_GP")
 	
 	var gp_impact_area = get_child(3)  # assume the Area3D node is a child of the player
 	
