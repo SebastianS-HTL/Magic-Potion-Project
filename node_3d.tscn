@@ -59,10 +59,6 @@ camera_attributes = SubResource("CameraAttributesPractical_2y4oo")
 compositor = SubResource("Compositor_l15ma")
 script = ExtResource("4_adyyc")
 
-[node name="runner" parent="." instance=ExtResource("5_pc7tg")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -60, 0)
-visible = false
-
 [node name="deathborders" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 2
@@ -70,5 +66,8 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="deathborders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.302, -114.972, 559.282)
 shape = SubResource("BoxShape3D_7csoy")
+
+[node name="runner" parent="." instance=ExtResource("5_pc7tg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -60, 0)
 
 [connection signal="body_shape_entered" from="deathborders" to="CharacterBody3D" method="_on_deathborders_body_shape_entered"]
