@@ -99,7 +99,7 @@ layout_mode = 2
 size_flags_stretch_ratio = 0.0
 max_value = 10.0
 step = 0.1
-value = 0.2
+value = 1.0
 
 [node name="Brightness2" type="Label" parent="VBoxContainer"]
 z_index = 1

@@ -119,6 +119,7 @@ offset_bottom = 648.0
 script = ExtResource("10_v47qv")
 
 [node name="FPS" type="Label" parent="Debug Menu"]
+layout_mode = 0
 offset_right = 206.0
 offset_bottom = 23.0
 text = "SOMETHING WRONG HERE"
