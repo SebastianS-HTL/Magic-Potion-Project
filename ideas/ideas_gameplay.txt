@@ -18,3 +18,4 @@ add first weapon: fists you have a
 	lmb: thats just a simple punch that is able to just be held down 
 	rmb on ground: a single punch that has inside recoil for enemys, like flying across the map recoil
 	rmb in air: a airdash to a enemy, either a one hit kill or insane damage (Bloodthief inspo)
+	(sound effects should obv. be very impactfull)
